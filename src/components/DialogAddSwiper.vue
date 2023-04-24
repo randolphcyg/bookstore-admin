@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="type == 'add' ? '添加轮播图' : '修改轮播图'"
+    :title="type === 'add' ? '添加轮播图' : '修改轮播图'"
     v-model="state.visible"
     width="400px"
   >
@@ -17,7 +17,7 @@
           :before-upload="handleBeforeUpload"
           :on-success="handleUrlSuccess"
         >
-          <img style="width: 200px; height: 100px; border: 1px solid #e9e9e9;" v-if="state.ruleForm.url" :src="state.ruleForm.url" class="avatar">
+          <img style="width: 200px; height: 100px; border: 1px solid #e9e9e9;" v-if="state.ruleForm.url" :src="state.ruleForm.url" class="avatar" alt="">
           <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
         </el-upload>
       </el-form-item>
@@ -111,7 +111,7 @@ const submitForm = () => {
   console.log(formRef.value.validate)
   formRef.value.validate((valid) => {
     if (valid) {
-      if (props.type == 'add') {
+      if (props.type === 'add') {
         axios.post('/carousels', {
           carouselUrl: state.ruleForm.url,
           redirectUrl: state.ruleForm.link,
