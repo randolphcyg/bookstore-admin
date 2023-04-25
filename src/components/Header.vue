@@ -66,7 +66,7 @@ router.afterEach((to) => {
   const { id } = to.query
   state.name = pathMap[to.name]
   // level2 和 level3 需要展示返回icon
-  console.log('to.name', to.name)
+  // console.log('to.name', to.name)
   state.hasBack = ['level2', 'level3'].includes(to.name)
 })
 

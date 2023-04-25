@@ -140,7 +140,7 @@ const changePage = (val) => {
 }
 const handleNext = (item) => {
   const levelNumber = item.categoryLevel + 1
-  if (levelNumber == 4) {
+  if (levelNumber === 4) {
     ElMessage.error('没有下一级')
     return
   }

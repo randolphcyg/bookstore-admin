@@ -12,10 +12,10 @@
         <el-input type="text" v-model="state.ruleForm.link"></el-input>
       </el-form-item>
       <el-form-item label="商品编号" prop="id">
-        <el-input type="number" min="0" v-model="state.ruleForm.id"></el-input>
+        <el-input type="number" min="1" v-model.number="state.ruleForm.id"></el-input>
       </el-form-item>
       <el-form-item label="排序值" prop="sort">
-        <el-input type="number" v-model="state.ruleForm.sort"></el-input>
+        <el-input type="number" min="1" v-model.number="state.ruleForm.sort"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -43,8 +43,8 @@ const state = reactive({
   ruleForm: {
     name: '',
     link: '',
-    id: '',
-    sort: ''
+    id: 1,
+    sort: 1
   },
   rules: {
     name: [
@@ -79,9 +79,9 @@ const open = (id) => {
   } else {
     state.ruleForm = {
       name: '',
-      id: '',
+      id: 1,
       link: '',
-      sort: ''
+      sort: 1
     }
   }
 }
@@ -92,8 +92,8 @@ const close = () => {
 const submitForm = () => {
   formRef.value.validate((valid) => {
     if (valid) {
-      if (state.ruleForm.id < 0) {
-        ElMessage.error('商品编号不能小于 0')
+      if (state.ruleForm.id < 1) {
+        ElMessage.error('商品编号不能小于 1')
         return
       }
       if (props.type === 'add') {
@@ -109,14 +109,15 @@ const submitForm = () => {
           if (props.reload) props.reload()
         })
       } else {
-        axios.put('/indexConfigs', {
+        let params = {
           configId: state.id,
           configType: props.configType || 3,
           configName: state.ruleForm.name,
           redirectUrl: state.ruleForm.link,
-          goodsId: state.ruleForm.id,
+          goodsId:  state.ruleForm.id,
           configRank: state.ruleForm.sort
-        }).then(() => {
+        }
+        axios.put('/indexConfigs', params).then(() => {
           ElMessage.success('修改成功')
           state.visible = false
           if (props.reload) props.reload()

@@ -2,7 +2,7 @@
   <div class="add">
     <el-card class="add-container">
       <el-form :model="state.goodForm" :rules="state.rules" ref="goodRef" label-width="100px" class="goodForm">
-        <el-form-item required label="商品分类">
+        <el-form-item label="商品分类">
           <el-cascader :placeholder="state.defaultCate" style="width: 300px" :props="state.category" @change="handleChangeCate"></el-cascader>
         </el-form-item>
         <el-form-item label="商品名称" prop="goodsName">
@@ -12,21 +12,21 @@
           <el-input style="width: 300px" type="textarea" v-model="state.goodForm.goodsIntro" placeholder="请输入商品简介(100字)"></el-input>
         </el-form-item>
         <el-form-item label="商品价格" prop="originalPrice">
-          <el-input type="number" min="0" style="width: 300px" v-model="state.goodForm.originalPrice" placeholder="请输入商品价格"></el-input>
+          <el-input type="number" min="0" style="width: 300px" v-model.number="state.goodForm.originalPrice" placeholder="请输入商品价格"></el-input>
         </el-form-item>
         <el-form-item label="商品售卖价" prop="sellingPrice">
-          <el-input type="number" min="0" style="width: 300px" v-model="state.goodForm.sellingPrice" placeholder="请输入商品售价"></el-input>
+          <el-input type="number" min="0" style="width: 300px" v-model.number="state.goodForm.sellingPrice" placeholder="请输入商品售价"></el-input>
         </el-form-item>
         <el-form-item label="商品库存" prop="stockNum">
-          <el-input type="number" min="0" style="width: 300px" v-model="state.goodForm.stockNum" placeholder="请输入商品库存"></el-input>
+          <el-input type="number" min="0" style="width: 300px" v-model.number="state.goodForm.stockNum" placeholder="请输入商品库存"></el-input>
         </el-form-item>
         <el-form-item label="商品标签" prop="tag">
           <el-input style="width: 300px" v-model="state.goodForm.tag" placeholder="请输入商品小标签"></el-input>
         </el-form-item>
         <el-form-item label="上架状态" prop="goodsSellStatus">
-          <el-radio-group v-model="state.goodForm.goodsSellStatus">
-            <el-radio label="0">上架</el-radio>
-            <el-radio label="1">下架</el-radio>
+          <el-radio-group v-model.number="state.goodForm.goodsSellStatus">
+            <el-radio :label="0">上架</el-radio>
+            <el-radio :label="1">下架</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item required label="商品主图" prop="goodsCoverImg">
@@ -78,10 +78,10 @@ const state = reactive({
   goodForm: {
     goodsName: '',
     goodsIntro: '',
-    originalPrice: '',
-    sellingPrice: '',
-    stockNum: '',
-    goodsSellStatus: '0',
+    originalPrice: 0,
+    sellingPrice: 0,
+    stockNum: 0,
+    goodsSellStatus: 0,
     goodsCoverImg: '',
     tag: ''
   },
@@ -163,7 +163,7 @@ onMounted(() => {
         originalPrice: goods.originalPrice,
         sellingPrice: goods.sellingPrice,
         stockNum: goods.stockNum,
-        goodsSellStatus: String(goods.goodsSellStatus),
+        goodsSellStatus: goods.goodsSellStatus,
         goodsCoverImg: proxy.$filters.prefix(goods.goodsCoverImg),
         tag: goods.tag
       }

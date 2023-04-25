@@ -4,8 +4,8 @@
       <div class="head">
         <img class="logo" src="https://s.yezgea02.com/1582958061265/mlogo.png" />
         <div class="name">
-          <div class="title">书店商城</div>
-          <div class="tips">Vue3.0 后台管理系统</div>
+          <div class="title">先锋书店</div>
+          <div class="tips">管理系统</div>
         </div>
       </div>
       <el-form label-position="top" :rules="state.rules" :model="state.ruleForm" ref="loginForm" class="login-form">

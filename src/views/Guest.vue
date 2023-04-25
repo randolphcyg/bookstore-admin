@@ -29,8 +29,8 @@
           label="身份状态"
         >
           <template #default="scope">
-            <span :style="scope.row.lockedFlag == 0 ? 'color: green;' : 'color: red;'">
-              {{ scope.row.lockedFlag == 0 ? '正常' : '禁用' }}
+            <span :style="scope.row.lockedFlag === 0 ? 'color: green;' : 'color: red;'">
+              {{ scope.row.lockedFlag === 0 ? '正常' : '禁用' }}
             </span>
           </template>
         </el-table-column>
@@ -38,8 +38,8 @@
           label="是否注销"
         >
           <template #default="scope">
-            <span :style="scope.row.lockedFlag == 0 ? 'color: green;' : 'color: red;'">
-              {{ scope.row.isDeleted == 0 ? '正常' : '注销' }}
+            <span :style="scope.row.lockedFlag === 0 ? 'color: green;' : 'color: red;'">
+              {{ scope.row.isDeleted === 0 ? '正常' : '注销' }}
             </span>
           </template>
         </el-table-column>

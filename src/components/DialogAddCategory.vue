@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="state.type == 'add' ? '添加分类' : '修改分类'"
+    :title="state.type === 'add' ? '添加分类' : '修改分类'"
     v-model="state.visible"
     width="400px"
   >
@@ -9,7 +9,7 @@
         <el-input type="text" v-model="state.ruleForm.name"></el-input>
       </el-form-item>
       <el-form-item label="排序值" prop="rank">
-        <el-input type="number" v-model="state.ruleForm.rank"></el-input>
+        <el-input type="number" min="1" v-model.number="state.ruleForm.rank"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -40,7 +40,7 @@ const state = reactive({
   parentId: 0,
   ruleForm: {
     name: '',
-    rank: ''
+    rank: 1
   },
   rules: {
     name: [
@@ -52,15 +52,16 @@ const state = reactive({
   },
   id: ''
 })
+
 // 获取详情
 const getDetail = (id) => {
   axios.get(`/categories/${id}`).then(res => {
     state.ruleForm = {
-      name: res.categoryName,
-      rank: res.categoryRank
+      name: res.mallGoodsCategory.categoryName,
+      rank: res.mallGoodsCategory.categoryRank
     }
-    state.parentId = res.parentId
-    state.categoryLevel = res.categoryLevel
+    state.parentId = res.mallGoodsCategory.parentId;
+    state.categoryLevel = res.mallGoodsCategory.categoryLevel;
   })
 }
 // 开启弹窗
@@ -76,7 +77,7 @@ const open = (id) => {
     const { level = 1, parent_id = 0 } = route.query
     state.ruleForm = {
       name: '',
-      rank: ''
+      rank: 1
     }
     state.parentId = parent_id
     state.categoryLevel = level
@@ -89,14 +90,15 @@ const close = () => {
 const submitForm = () => {
   formRef.value.validate((valid) => {
     if (valid) {
-      if (props.type == 'add') {
+      if (props.type === 'add') {
         // 添加方法
-        axios.post('/categories', {
-          categoryLevel: state.categoryLevel,
-          parentId: state.parentId,
+        let params = {
+          categoryLevel: parseInt(state.categoryLevel),
+          parentId: parseInt(state.parentId),
           categoryName: state.ruleForm.name,
           categoryRank: state.ruleForm.rank
-        }).then(() => {
+        }
+        axios.post('/categories', params).then(() => {
           ElMessage.success('添加成功')
           state.visible = false
           // 接口回调之后，运行重新获取列表方法 reload
@@ -106,8 +108,8 @@ const submitForm = () => {
         // 修改方法
         axios.put('/categories', {
           categoryId: state.id,
-          categoryLevel: state.categoryLevel,
-          parentId: state.categoryLevel,
+          categoryLevel:  parseInt(state.categoryLevel),
+          parentId:  parseInt(state.categoryLevel),
           categoryName: state.ruleForm.name,
           categoryRank: state.ruleForm.rank
         }).then(() => {

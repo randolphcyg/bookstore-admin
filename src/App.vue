@@ -4,8 +4,7 @@
       <el-aside class="aside">
         <div class="head">
           <div>
-            <img src="//s.weituibao.com/1582958061265/mlogo.png" alt="logo">
-            <span>vue3 admin</span>
+            <span>书店管理系统</span>
           </div>
         </div>
         <div class="line" />
@@ -18,10 +17,9 @@
         >
           <el-sub-menu index="1">
             <template #title>
-              <span>Dashboard</span>
+              <span>主要功能</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/"><el-icon><Odometer /></el-icon>首页</el-menu-item>
               <el-menu-item index="/add"><el-icon><Plus /></el-icon>添加商品</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
@@ -31,8 +29,8 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/swiper"><el-icon><Picture /></el-icon>轮播图配置</el-menu-item>
-              <el-menu-item index="/hot"><el-icon><StarFilled /></el-icon>热销商品配置</el-menu-item>
-              <el-menu-item index="/new"><el-icon><Sell /></el-icon>新品上线配置</el-menu-item>
+              <el-menu-item index="/hot"><el-icon><StarFilled /></el-icon>畅销书籍配置</el-menu-item>
+              <el-menu-item index="/new"><el-icon><Sell /></el-icon>新书上线配置</el-menu-item>
               <el-menu-item index="/recommend"><el-icon><ShoppingCart /></el-icon>为你推荐配置</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
@@ -91,7 +89,7 @@ router.afterEach((to, from) => {
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path == '/login') {
+  if (to.path === '/login') {
     // 如果路径是 /login 则正常执行
     next()
   } else {
