@@ -28,7 +28,7 @@
       </el-table-column>
       <el-table-column
         prop="configName"
-        label="商品名称"
+        label="图书名称"
       >
       </el-table-column>
       <el-table-column
@@ -45,8 +45,8 @@
       >
       </el-table-column>
       <el-table-column
-        prop="goodsId"
-        label="商品编号"
+        prop="booksId"
+        label="图书编号"
         width="200"
       >
       </el-table-column>
@@ -85,14 +85,14 @@
       @current-change="changePage"
     />
   </el-card>
-  <DialogAddGood ref='addGood' :reload="getIndexConfig" :type="state.type" :configType="state.configType" />
+  <DialogAddBook ref='addBook' :reload="getIndexConfig" :type="state.type" :configType="state.configType" />
 </template>
 
 <script setup>
 import { onMounted, reactive, ref} from 'vue'
 import { ElMessage } from 'element-plus'
 import { Plus, Delete } from '@element-plus/icons-vue'
-import DialogAddGood from '@/components/DialogAddGood.vue'
+import DialogAddBook from '@/components/DialogAddBook.vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from '@/utils/axios'
 // 首页配置类型参数
@@ -105,7 +105,7 @@ const configTypeMap = {
 const router = useRouter()
 const route = useRoute()
 const multipleTable = ref(null)
-const addGood = ref(null)
+const addBook = ref(null)
 const state = reactive({
   loading: false,
   tableData: [], // 数据列表
@@ -114,7 +114,7 @@ const state = reactive({
   currentPage: 1, // 当前页
   pageSize: 10, // 分页大小
   type: 'add', // 操作类型
-  configType: 3 // 3-(首页)热销商品 4-(首页)新品上线 5-(首页)为你推荐
+  configType: 3 // 3-(首页)热销图书 4-(首页)新品上线 5-(首页)为你推荐
 })
 // 监听路由变化
 router.beforeEach((to) => {
@@ -129,7 +129,7 @@ onMounted(() => {
   state.configType = configTypeMap[route.name]
   getIndexConfig()
 })
-// 首页热销商品列表
+// 首页热销图书列表
 const getIndexConfig = () => {
   state.loading = true
   axios.get('/indexConfigs', {
@@ -145,15 +145,15 @@ const getIndexConfig = () => {
     state.loading = false
   })
 }
-// 添加商品
+// 添加图书
 const handleAdd = () => {
   state.type = 'add'
-  addGood.value.open()
+  addBook.value.open()
 }
-// 修改商品
+// 修改图书
 const handleEdit = (id) => {
   state.type = 'edit'
-  addGood.value.open(id)
+  addBook.value.open(id)
 }
 // 选择项
 const handleSelectionChange = (val) => {

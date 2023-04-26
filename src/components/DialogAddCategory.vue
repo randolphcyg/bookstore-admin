@@ -4,8 +4,8 @@
     v-model="state.visible"
     width="400px"
   >
-    <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="good-form">
-      <el-form-item label="商品名称" prop="name">
+    <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="book-form">
+      <el-form-item label="图书名称" prop="name">
         <el-input type="text" v-model="state.ruleForm.name"></el-input>
       </el-form-item>
       <el-form-item label="排序值" prop="rank">
@@ -57,11 +57,11 @@ const state = reactive({
 const getDetail = (id) => {
   axios.get(`/categories/${id}`).then(res => {
     state.ruleForm = {
-      name: res.mallGoodsCategory.categoryName,
-      rank: res.mallGoodsCategory.categoryRank
+      name: res.mallBooksCategory.categoryName,
+      rank: res.mallBooksCategory.categoryRank
     }
-    state.parentId = res.mallGoodsCategory.parentId;
-    state.categoryLevel = res.mallGoodsCategory.categoryLevel;
+    state.parentId = res.mallBooksCategory.parentId;
+    state.categoryLevel = res.mallBooksCategory.categoryLevel;
   })
 }
 // 开启弹窗

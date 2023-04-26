@@ -38,24 +38,24 @@
       style="width: 100%"
     >
       <el-table-column
-        label="商品图片"
+        label="图书图片"
       >
         <template #default="scope">
-          <img style="width: 100px" :key="scope.row.goodsId" :src="$filters.prefix(scope.row.goodsCoverImg)" alt="商品主图">
+          <img style="width: 100px" :key="scope.row.booksId" :src="$filters.prefix(scope.row.booksCoverImg)" alt="图书主图">
         </template>
       </el-table-column>
       <el-table-column
-        prop="goodsId"
-        label="商品编号"
+        prop="booksId"
+        label="图书编号"
       >
       </el-table-column>
       <el-table-column
-        prop="goodsName"
-        label="商品名"
+        prop="booksName"
+        label="图书名"
       ></el-table-column>
       <el-table-column
-        prop="goodsCount"
-        label="商品数量"
+        prop="booksCount"
+        label="图书数量"
       >
       </el-table-column>
       <el-table-column
@@ -82,7 +82,7 @@ onMounted(() => {
   axios.get(`/orders/${id}`).then(res => {
     console.log(res)
     state.data = res
-    state.tableData = res.newBeeMallOrderItemVOS
+    state.tableData = res.bookStoreOrderItemVOS
   })
 })
 </script>

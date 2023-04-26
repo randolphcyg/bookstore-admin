@@ -20,7 +20,7 @@ const router = createRouter({
     {
       path: '/add',
       name: 'add',
-      component: () => import(/* webpackChunkName: "add" */ '../views/AddGood.vue')
+      component: () => import(/* webpackChunkName: "add" */ '../views/AddBook.vue')
     },
     {
       path: '/swiper',
@@ -60,9 +60,9 @@ const router = createRouter({
       ]
     },
     {
-      path: '/good',
-      name: 'good',
-      component: () => import(/* webpackChunkName: "new" */ '../views/Good.vue')
+      path: '/book',
+      name: 'book',
+      component: () => import(/* webpackChunkName: "new" */ '../views/Book.vue')
     },
     {
       path: '/guest',

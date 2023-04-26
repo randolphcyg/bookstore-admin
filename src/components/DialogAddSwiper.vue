@@ -4,7 +4,7 @@
     v-model="state.visible"
     width="400px"
   >
-    <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="good-form">
+    <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="book-form">
       <el-form-item label="图片" prop="url">
         <el-upload
           class="avatar-uploader"

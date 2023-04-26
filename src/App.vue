@@ -20,7 +20,7 @@
               <span>主要功能</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/add"><el-icon><Plus /></el-icon>添加商品</el-menu-item>
+              <el-menu-item index="/add"><el-icon><Plus /></el-icon>添加图书</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
            <el-sub-menu index="2">
@@ -40,7 +40,7 @@
             </template>
             <el-menu-item-group>
               <el-menu-item index="/category"><el-icon><Menu /></el-icon>分类管理</el-menu-item>
-              <el-menu-item index="/good"><el-icon><Goods /></el-icon>商品管理</el-menu-item>
+              <el-menu-item index="/book"><el-icon><Books /></el-icon>图书管理</el-menu-item>
               <el-menu-item index="/guest"><el-icon><User /></el-icon>会员管理</el-menu-item>
               <el-menu-item index="/order"><el-icon><List /></el-icon>订单管理</el-menu-item>
             </el-menu-item-group>

@@ -1,17 +1,17 @@
 <template>
   <el-dialog
-    :title="type === 'add' ? '添加商品' : '修改商品'"
+    :title="type === 'add' ? '添加图书' : '修改图书'"
     v-model="state.visible"
     width="400px"
   >
-    <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="good-form">
-      <el-form-item label="商品名称" prop="name">
+    <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="book-form">
+      <el-form-item label="图书名称" prop="name">
         <el-input type="text" v-model="state.ruleForm.name"></el-input>
       </el-form-item>
       <el-form-item label="跳转链接" prop="link">
         <el-input type="text" v-model="state.ruleForm.link"></el-input>
       </el-form-item>
-      <el-form-item label="商品编号" prop="id">
+      <el-form-item label="图书编号" prop="id">
         <el-input type="number" min="1" v-model.number="state.ruleForm.id"></el-input>
       </el-form-item>
       <el-form-item label="排序值" prop="sort">
@@ -64,7 +64,7 @@ const getDetail = (id) => {
   axios.get(`/indexConfigs/${id}`).then(res => {
     state.ruleForm = {
       name: res.configName,
-      id: res.goodsId,
+      id: res.booksId,
       link: res.redirectUrl,
       sort: res.configRank
     }
@@ -93,7 +93,7 @@ const submitForm = () => {
   formRef.value.validate((valid) => {
     if (valid) {
       if (state.ruleForm.id < 1) {
-        ElMessage.error('商品编号不能小于 1')
+        ElMessage.error('图书编号不能小于 1')
         return
       }
       if (props.type === 'add') {
@@ -101,7 +101,7 @@ const submitForm = () => {
           configType: props.configType || 3,
           configName: state.ruleForm.name,
           redirectUrl: state.ruleForm.link,
-          goodsId: state.ruleForm.id,
+          booksId: state.ruleForm.id,
           configRank: state.ruleForm.sort
         }).then(() => {
           ElMessage.success('添加成功')
@@ -114,7 +114,7 @@ const submitForm = () => {
           configType: props.configType || 3,
           configName: state.ruleForm.name,
           redirectUrl: state.ruleForm.link,
-          goodsId:  state.ruleForm.id,
+          booksId:  state.ruleForm.id,
           configRank: state.ruleForm.sort
         }
         axios.put('/indexConfigs', params).then(() => {
