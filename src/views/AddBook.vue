@@ -9,7 +9,7 @@
           <el-input style="width: 300px" v-model="state.bookForm.booksName" placeholder="请输入图书名称"></el-input>
         </el-form-item>
         <el-form-item label="图书简介" prop="booksIntro">
-          <el-input style="width: 300px" type="textarea" v-model="state.bookForm.booksIntro" placeholder="请输入图书简介(100字)"></el-input>
+          <el-input style="width: 500px" type="textarea" v-model="state.bookForm.booksIntro" placeholder="请输入图书简介(1000字)"></el-input>
         </el-form-item>
         <el-form-item label="图书价格" prop="originalPrice">
           <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.originalPrice" placeholder="请输入图书价格"></el-input>

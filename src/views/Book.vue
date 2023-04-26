@@ -24,6 +24,7 @@
       <el-table-column
         prop="booksIntro"
         label="图书简介"
+        width="300px"
       >
       </el-table-column>
       <el-table-column
