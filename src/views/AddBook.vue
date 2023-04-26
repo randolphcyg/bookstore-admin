@@ -8,6 +8,15 @@
         <el-form-item label="图书名称" prop="booksName">
           <el-input style="width: 300px" v-model="state.bookForm.booksName" placeholder="请输入图书名称"></el-input>
         </el-form-item>
+        <el-form-item label="图书作者" prop="booksAuthor">
+          <el-input style="width: 300px" v-model="state.bookForm.booksAuthor" placeholder="请输入图书作者"></el-input>
+        </el-form-item>
+        <el-form-item label="图书作者国籍" prop="booksAuthorCountry">
+          <el-input style="width: 300px" v-model="state.bookForm.booksAuthorCountry" placeholder="请输入图书作者国籍"></el-input>
+        </el-form-item>
+        <el-form-item label="出版社出版时间" prop="booksPublish">
+          <el-input style="width: 300px" v-model="state.bookForm.booksPublish" placeholder="出版社出版时间"></el-input>
+        </el-form-item>
         <el-form-item label="图书简介" prop="booksIntro">
           <el-input style="width: 500px" type="textarea" v-model="state.bookForm.booksIntro" placeholder="请输入图书简介(1000字)"></el-input>
         </el-form-item>
@@ -77,6 +86,9 @@ const state = reactive({
   defaultCate: '',
   bookForm: {
     booksName: '',
+    booksAuthor: '',
+    booksAuthorCountry: '',
+    booksPublish: '',
     booksIntro: '',
     originalPrice: 0,
     sellingPrice: 0,
@@ -159,6 +171,9 @@ onMounted(() => {
       const { books, firstCategory, secondCategory, thirdCategory } = res
       state.bookForm = {
         booksName: books.booksName,
+        booksAuthor: books.booksAuthor,
+        booksAuthorCountry: books.booksAuthorCountry,
+        booksPublish: books.booksPublish,
         booksIntro: books.booksIntro,
         originalPrice: books.originalPrice,
         sellingPrice: books.sellingPrice,
@@ -191,6 +206,9 @@ const submitAdd = () => {
         booksDetailContent: instance.txt.html(),
         booksIntro: state.bookForm.booksIntro,
         booksName: state.bookForm.booksName,
+        booksAuthor: state.bookForm.booksAuthor,
+        booksAuthorCountry: state.bookForm.booksAuthorCountry,
+        booksPublish: state.bookForm.booksPublish,
         booksSellStatus: state.bookForm.booksSellStatus,
         originalPrice: state.bookForm.originalPrice,
         sellingPrice: state.bookForm.sellingPrice,

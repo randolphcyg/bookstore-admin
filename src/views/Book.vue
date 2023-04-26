@@ -19,12 +19,32 @@
       <el-table-column
         prop="booksName"
         label="图书名"
+        width="150px"
+        :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+          prop="booksAuthor"
+          label="图书作者"
+          width="150px"
+          :show-overflow-tooltip="true"
+      >
+      </el-table-column>
+      <el-table-column
+          prop="booksAuthorCountry"
+          label="图书作者国籍"
+      >
+      </el-table-column>
+      <el-table-column
+          prop="booksPublish"
+          label="出版社出版时间"
       >
       </el-table-column>
       <el-table-column
         prop="booksIntro"
         label="图书简介"
         width="300px"
+        :show-overflow-tooltip="true"
       >
       </el-table-column>
       <el-table-column
