@@ -2,7 +2,7 @@
   <div class="login-body">
     <div class="login-container">
       <div class="head">
-        <img class="logo" src="https://s.yezgea02.com/1582958061265/mlogo.png" />
+        <img class="logo" src="https://s.yezgea02.com/1582958061265/mlogo.png"/>
         <div class="name">
           <div class="title">先锋书店</div>
           <div class="tips">管理系统</div>
@@ -28,8 +28,9 @@
 <script setup>
 import axios from '@/utils/axios'
 import md5 from 'js-md5'
-import { reactive, ref } from 'vue'
-import { localSet } from '@/utils'
+import {reactive, ref} from 'vue'
+import {localSet} from '@/utils'
+
 const loginForm = ref(null)
 const state = reactive({
   ruleForm: {
@@ -39,10 +40,10 @@ const state = reactive({
   checked: true,
   rules: {
     username: [
-      { required: 'true', message: '账户不能为空', trigger: 'blur' }
+      {required: 'true', message: '账户不能为空', trigger: 'blur'}
     ],
     password: [
-      { required: 'true', message: '密码不能为空', trigger: 'blur' }
+      {required: 'true', message: '密码不能为空', trigger: 'blur'}
     ]
   }
 })
@@ -68,48 +69,56 @@ const resetForm = () => {
 </script>
 
 <style scoped>
-  .login-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #fff;
-  }
-  .login-container {
-    width: 420px;
-    height: 500px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0px 21px 41px 0px rgba(0, 0, 0, 0.2);
-  }
-  .head {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0 20px 0;
-  }
-  .head img {
-    width: 100px;
-    height: 100px;
-    margin-right: 20px;
-  }
-  .head .title {
-    font-size: 28px;
-    color: #1BAEAE;
-    font-weight: bold;
-  }
-  .head .tips {
-    font-size: 12px;
-    color: #999;
-  }
-  .login-form {
-    width: 70%;
-    margin: 0 auto;
-  }
-  .login-form >>> .el-form--label-top .el-form-item__label {
-    padding: 0;
-  }
-  .login-form >>> .el-form-item {
-    margin-bottom: 0;
-  }
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+}
+
+.login-container {
+  width: 420px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 21px 41px 0px rgba(0, 0, 0, 0.2);
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0 20px 0;
+}
+
+.head img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.head .title {
+  font-size: 28px;
+  color: #1BAEAE;
+  font-weight: bold;
+}
+
+.head .tips {
+  font-size: 12px;
+  color: #999;
+}
+
+.login-form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.login-form >>> .el-form--label-top .el-form-item__label {
+  padding: 0;
+}
+
+.login-form >>> .el-form-item {
+  margin-bottom: 0;
+}
 </style>

@@ -3,7 +3,8 @@
     <el-card class="add-container">
       <el-form :model="state.bookForm" :rules="state.rules" ref="bookRef" label-width="100px" class="bookForm">
         <el-form-item label="图书分类">
-          <el-cascader :placeholder="state.defaultCate" style="width: 300px" :props="state.category" @change="handleChangeCate"></el-cascader>
+          <el-cascader :placeholder="state.defaultCate" style="width: 300px" :props="state.category"
+                       @change="handleChangeCate"></el-cascader>
         </el-form-item>
         <el-form-item label="图书名称" prop="booksName">
           <el-input style="width: 300px" v-model="state.bookForm.booksName" placeholder="请输入图书名称"></el-input>
@@ -18,16 +19,20 @@
           <el-input style="width: 300px" v-model="state.bookForm.booksPublish" placeholder="出版社出版时间"></el-input>
         </el-form-item>
         <el-form-item label="图书简介" prop="booksIntro">
-          <el-input style="width: 500px" type="textarea" v-model="state.bookForm.booksIntro" placeholder="请输入图书简介(1000字)"></el-input>
+          <el-input style="width: 500px" type="textarea" v-model="state.bookForm.booksIntro"
+                    placeholder="请输入图书简介(1000字)"></el-input>
         </el-form-item>
         <el-form-item label="图书价格" prop="originalPrice">
-          <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.originalPrice" placeholder="请输入图书价格"></el-input>
+          <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.originalPrice"
+                    placeholder="请输入图书价格"></el-input>
         </el-form-item>
         <el-form-item label="图书售卖价" prop="sellingPrice">
-          <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.sellingPrice" placeholder="请输入图书售价"></el-input>
+          <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.sellingPrice"
+                    placeholder="请输入图书售价"></el-input>
         </el-form-item>
         <el-form-item label="图书库存" prop="stockNum">
-          <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.stockNum" placeholder="请输入图书库存"></el-input>
+          <el-input type="number" min="0" style="width: 300px" v-model.number="state.bookForm.stockNum"
+                    placeholder="请输入图书库存"></el-input>
         </el-form-item>
         <el-form-item label="图书标签" prop="tag">
           <el-input style="width: 300px" v-model="state.bookForm.tag" placeholder="请输入图书小标签"></el-input>
@@ -40,18 +45,21 @@
         </el-form-item>
         <el-form-item required label="图书主图" prop="booksCoverImg">
           <el-upload
-            class="avatar-uploader"
-            :action="state.uploadImgServer"
-            accept="jpg,jpeg,png"
-            :headers="{
+              class="avatar-uploader"
+              :action="state.uploadImgServer"
+              accept="jpg,jpeg,png"
+              :headers="{
               token: state.token
             }"
-            :show-file-list="false"
-            :before-upload="handleBeforeUpload"
-            :on-success="handleUrlSuccess"
+              :show-file-list="false"
+              :before-upload="handleBeforeUpload"
+              :on-success="handleUrlSuccess"
           >
-            <img style="width: 100px; height: 100px; border: 1px solid #e9e9e9;" v-if="state.bookForm.booksCoverImg" :src="state.bookForm.booksCoverImg" class="avatar">
-            <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+            <img style="width: 100px; height: 100px; border: 1px solid #e9e9e9;" v-if="state.bookForm.booksCoverImg"
+                 :src="state.bookForm.booksCoverImg" class="avatar">
+            <el-icon v-else class="avatar-uploader-icon">
+              <Plus/>
+            </el-icon>
           </el-upload>
         </el-form-item>
         <el-form-item label="详情内容">
@@ -66,19 +74,19 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted, onBeforeUnmount, getCurrentInstance } from 'vue'
+import {reactive, ref, onMounted, onBeforeUnmount, getCurrentInstance} from 'vue'
 import WangEditor from 'wangeditor'
 import axios from '@/utils/axios'
-import { ElMessage } from 'element-plus'
-import { useRoute, useRouter } from 'vue-router'
-import { localGet, uploadImgServer, uploadImgsServer } from '@/utils'
+import {ElMessage} from 'element-plus'
+import {useRoute, useRouter} from 'vue-router'
+import {localGet, uploadImgServer, uploadImgsServer} from '@/utils'
 
-const { proxy } = getCurrentInstance()
+const {proxy} = getCurrentInstance()
 const editor = ref(null)
 const bookRef = ref(null)
 const route = useRoute()
 const router = useRouter()
-const { id } = route.query
+const {id} = route.query
 const state = reactive({
   uploadImgServer,
   token: localGet('token') || '',
@@ -99,23 +107,23 @@ const state = reactive({
   },
   rules: {
     booksName: [
-      { required: 'true', message: '请填写图书名称', trigger: ['change'] }
+      {required: 'true', message: '请填写图书名称', trigger: ['change']}
     ],
     originalPrice: [
-      { required: 'true', message: '请填写图书价格', trigger: ['change'] }
+      {required: 'true', message: '请填写图书价格', trigger: ['change']}
     ],
     sellingPrice: [
-      { required: 'true', message: '请填写图书售价', trigger: ['change'] }
+      {required: 'true', message: '请填写图书售价', trigger: ['change']}
     ],
     stockNum: [
-      { required: 'true', message: '请填写图书库存', trigger: ['change'] }
+      {required: 'true', message: '请填写图书库存', trigger: ['change']}
     ],
   },
   categoryId: '',
   category: {
     lazy: true,
     lazyLoad(node, resolve) {
-      const { level = 0, value } = node
+      const {level = 0, value} = node
       axios.get('/categories', {
         params: {
           pageNumber: 1,
@@ -150,7 +158,7 @@ onMounted(() => {
   instance.config.uploadImgHooks = {
     // 图片上传并返回了结果，想要自己把图片插入到编辑器中
     // 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
-    customInsert: function(insertImgFn, result) {
+    customInsert: function (insertImgFn, result) {
       console.log('result', result)
       // result 即服务端返回的接口
       // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
@@ -168,7 +176,7 @@ onMounted(() => {
   instance.create()
   if (id) {
     axios.get(`/books/${id}`).then(res => {
-      const { books, firstCategory, secondCategory, thirdCategory } = res
+      const {books, firstCategory, secondCategory, thirdCategory} = res
       state.bookForm = {
         booksName: books.booksName,
         booksAuthor: books.booksAuthor,
@@ -223,7 +231,7 @@ const submitAdd = () => {
       }
       httpOption('/books', params).then(() => {
         ElMessage.success(id ? '修改成功' : '添加成功')
-        router.push({ path: '/book' })
+        router.push({path: '/book'})
       })
     }
   })
@@ -244,24 +252,27 @@ const handleChangeCate = (val) => {
 </script>
 
 <style scoped>
-  .add {
-    display: flex;
-  }
-  .add-container {
-    flex: 1;
-    height: 100%;
-  }
-  .avatar-uploader {
-    width: 100px;
-    height: 100px;
-    color: #ddd;
-    font-size: 30px;
-  }
-  .avatar-uploader-icon {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #e9e9e9;
-    padding: 32px 17px;
-  }
+.add {
+  display: flex;
+}
+
+.add-container {
+  flex: 1;
+  height: 100%;
+}
+
+.avatar-uploader {
+  width: 100px;
+  height: 100px;
+  color: #ddd;
+  font-size: 30px;
+}
+
+.avatar-uploader-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e9e9e9;
+  padding: 32px 17px;
+}
 </style>

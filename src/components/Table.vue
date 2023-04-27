@@ -9,24 +9,24 @@
     <slot name='column'></slot>
   </el-table>
   <el-pagination
-    background
-    layout="prev, pager, next"
-    :total="state.total"
-    :page-size="state.pageSize"
-    :current-page="state.currentPage"
-    @current-change="changePage"
+      background
+      layout="prev, pager, next"
+      :total="state.total"
+      :page-size="state.pageSize"
+      :current-page="state.currentPage"
+      @current-change="changePage"
   />
 </template>
 
 <script setup>
-import { onMounted, reactive, getCurrentInstance } from 'vue'
+import {onMounted, reactive, getCurrentInstance} from 'vue'
 import axios from '@/utils/axios'
 
 const props = defineProps({
   action: String
 })
 const app = getCurrentInstance()
-const { goTop } = app.appContext.config.globalProperties
+const {goTop} = app.appContext.config.globalProperties
 const state = reactive({
   loading: false,
   tableData: [], // 数据列表
@@ -64,5 +64,5 @@ const changePage = (val) => {
   getList()
 }
 // script setup 写法，需要通过 defineExpose 方法，将属性暴露出去，才能在父组件通过 ref 形式拿到本组件的内部参数
-defineExpose({ state: state, getList: getList })
+defineExpose({state: state, getList: getList})
 </script>

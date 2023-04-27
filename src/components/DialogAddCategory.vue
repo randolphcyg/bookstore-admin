@@ -1,8 +1,8 @@
 <template>
   <el-dialog
-    :title="state.type === 'add' ? '添加分类' : '修改分类'"
-    v-model="state.visible"
-    width="400px"
+      :title="state.type === 'add' ? '添加分类' : '修改分类'"
+      v-model="state.visible"
+      width="400px"
   >
     <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="book-form">
       <el-form-item label="图书名称" prop="name">
@@ -22,10 +22,10 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import {reactive, ref} from 'vue'
+import {useRoute} from 'vue-router'
 import axios from '@/utils/axios'
-import { ElMessage } from 'element-plus'
+import {ElMessage} from 'element-plus'
 
 const props = defineProps({
   type: String, // 用于判断是添加还是编辑
@@ -44,10 +44,10 @@ const state = reactive({
   },
   rules: {
     name: [
-      { required: 'true', message: '名称不能为空', trigger: ['change'] }
+      {required: 'true', message: '名称不能为空', trigger: ['change']}
     ],
     rank: [
-      { required: 'true', message: '编号不能为空', trigger: ['change'] }
+      {required: 'true', message: '编号不能为空', trigger: ['change']}
     ]
   },
   id: ''
@@ -74,7 +74,7 @@ const open = (id) => {
   } else {
     // 否则为新增模式
     // 新增类目，从路由获取分类 level 级别和父分类 id
-    const { level = 1, parent_id = 0 } = route.query
+    const {level = 1, parent_id = 0} = route.query
     state.ruleForm = {
       name: '',
       rank: 1
@@ -108,8 +108,8 @@ const submitForm = () => {
         // 修改方法
         axios.put('/categories', {
           categoryId: state.id,
-          categoryLevel:  parseInt(state.categoryLevel),
-          parentId:  parseInt(state.categoryLevel),
+          categoryLevel: parseInt(state.categoryLevel),
+          parentId: parseInt(state.categoryLevel),
           categoryName: state.ruleForm.name,
           categoryRank: state.ruleForm.rank
         }).then(() => {
@@ -122,5 +122,5 @@ const submitForm = () => {
     }
   })
 }
-defineExpose({ open, close })
+defineExpose({open, close})
 </script>

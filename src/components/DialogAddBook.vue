@@ -1,8 +1,8 @@
 <template>
   <el-dialog
-    :title="type === 'add' ? '添加图书' : '修改图书'"
-    v-model="state.visible"
-    width="400px"
+      :title="type === 'add' ? '添加图书' : '修改图书'"
+      v-model="state.visible"
+      width="400px"
   >
     <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="book-form">
       <el-form-item label="图书名称" prop="name">
@@ -28,9 +28,9 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import {reactive, ref} from 'vue'
 import axios from '@/utils/axios'
-import { ElMessage } from 'element-plus'
+import {ElMessage} from 'element-plus'
 
 const props = defineProps({
   type: String,
@@ -48,13 +48,13 @@ const state = reactive({
   },
   rules: {
     name: [
-      { required: 'true', message: '名称不能为空', trigger: ['change'] }
+      {required: 'true', message: '名称不能为空', trigger: ['change']}
     ],
     id: [
-      { required: 'true', message: '编号不能为空', trigger: ['change'] }
+      {required: 'true', message: '编号不能为空', trigger: ['change']}
     ],
     sort: [
-      { required: 'true', message: '排序不能为空', trigger: ['change'] }
+      {required: 'true', message: '排序不能为空', trigger: ['change']}
     ]
   },
   id: ''
@@ -114,7 +114,7 @@ const submitForm = () => {
           configType: props.configType || 3,
           configName: state.ruleForm.name,
           redirectUrl: state.ruleForm.link,
-          booksId:  state.ruleForm.id,
+          booksId: state.ruleForm.id,
           configRank: state.ruleForm.sort
         }
         axios.put('/indexConfigs', params).then(() => {
@@ -126,7 +126,7 @@ const submitForm = () => {
     }
   })
 }
-defineExpose({ open, close })
+defineExpose({open, close})
 </script>
 
 <style scoped>

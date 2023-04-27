@@ -1,24 +1,27 @@
 <template>
   <el-dialog
-    :title="type === 'add' ? '添加轮播图' : '修改轮播图'"
-    v-model="state.visible"
-    width="400px"
+      :title="type === 'add' ? '添加轮播图' : '修改轮播图'"
+      v-model="state.visible"
+      width="400px"
   >
     <el-form :model="state.ruleForm" :rules="state.rules" ref="formRef" label-width="100px" class="book-form">
       <el-form-item label="图片" prop="url">
         <el-upload
-          class="avatar-uploader"
-          :action="state.uploadImgServer"
-          accept="jpg,jpeg,png"
-          :headers="{
+            class="avatar-uploader"
+            :action="state.uploadImgServer"
+            accept="jpg,jpeg,png"
+            :headers="{
             token: state.token
           }"
-          :show-file-list="false"
-          :before-upload="handleBeforeUpload"
-          :on-success="handleUrlSuccess"
+            :show-file-list="false"
+            :before-upload="handleBeforeUpload"
+            :on-success="handleUrlSuccess"
         >
-          <img style="width: 200px; height: 100px; border: 1px solid #e9e9e9;" v-if="state.ruleForm.url" :src="state.ruleForm.url" class="avatar" alt="">
-          <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
+          <img style="width: 200px; height: 100px; border: 1px solid #e9e9e9;" v-if="state.ruleForm.url"
+               :src="state.ruleForm.url" class="avatar" alt="">
+          <el-icon v-else class="avatar-uploader-icon">
+            <Plus/>
+          </el-icon>
         </el-upload>
       </el-form-item>
       <el-form-item label="跳转链接" prop="link">
@@ -38,10 +41,10 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import {reactive, ref} from 'vue'
 import axios from '@/utils/axios'
-import { localGet, uploadImgServer } from '@/utils'
-import { ElMessage } from 'element-plus'
+import {localGet, uploadImgServer} from '@/utils'
+import {ElMessage} from 'element-plus'
 
 const props = defineProps({
   type: String,
@@ -60,10 +63,10 @@ const state = reactive({
   },
   rules: {
     url: [
-      { required: 'true', message: '图片不能为空', trigger: ['change'] }
+      {required: 'true', message: '图片不能为空', trigger: ['change']}
     ],
     sort: [
-      { required: 'true', message: '排序不能为空', trigger: ['change'] }
+      {required: 'true', message: '排序不能为空', trigger: ['change']}
     ]
   },
   id: ''
@@ -136,25 +139,27 @@ const submitForm = () => {
     }
   })
 }
-defineExpose({ open, close })
+defineExpose({open, close})
 </script>
 
 <style scoped>
-  .avatar-uploader {
-    width: 100px;
-    height: 100px;
-    color: #ddd;
-    font-size: 30px;
-  }
-  .avatar-uploader >>> .el-upload {
-    width: 100%;
-    text-align: center;
-  }
-  .avatar-uploader-icon {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #e9e9e9;
-    padding: 32px 17px;
-  }
+.avatar-uploader {
+  width: 100px;
+  height: 100px;
+  color: #ddd;
+  font-size: 30px;
+}
+
+.avatar-uploader >>> .el-upload {
+  width: 100%;
+  text-align: center;
+}
+
+.avatar-uploader-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e9e9e9;
+  padding: 32px 17px;
+}
 </style>

@@ -4,10 +4,10 @@
       <div class="header">
         <el-button type="primary" :icon="Plus" @click="handleAdd">增加</el-button>
         <el-popconfirm
-          title="确定删除吗？"
-          confirmButtonText='确定'
-          cancelButtonText='取消'
-          @confirm="handleDelete"
+            title="确定删除吗？"
+            confirmButtonText='确定'
+            cancelButtonText='取消'
+            @confirm="handleDelete"
         >
           <template #reference>
             <el-button type="danger" :icon="Delete">批量删除</el-button>
@@ -16,57 +16,57 @@
       </div>
     </template>
     <el-table
-      :load="state.loading"
-      ref="multipleTable"
-      :data="state.tableData"
-      tooltip-effect="dark"
-      style="width: 100%"
-      @selection-change="handleSelectionChange">
+        :load="state.loading"
+        ref="multipleTable"
+        :data="state.tableData"
+        tooltip-effect="dark"
+        style="width: 100%"
+        @selection-change="handleSelectionChange">
       <el-table-column
-        type="selection"
-        width="55">
+          type="selection"
+          width="55">
       </el-table-column>
       <el-table-column
-        prop="configName"
-        label="图书名称"
+          prop="configName"
+          label="图书名称"
       >
       </el-table-column>
       <el-table-column
-        label="跳转链接"
-        >
+          label="跳转链接"
+      >
         <template #default="scope">
           <a target="_blank" :href="scope.row.redirectUrl">{{ scope.row.redirectUrl }}</a>
         </template>
       </el-table-column>
       <el-table-column
-        prop="configRank"
-        label="排序值"
-        width="120"
+          prop="configRank"
+          label="排序值"
+          width="120"
       >
       </el-table-column>
       <el-table-column
-        prop="booksId"
-        label="图书编号"
-        width="200"
+          prop="booksId"
+          label="图书编号"
+          width="200"
       >
       </el-table-column>
       <el-table-column
-        prop="createTime"
-        label="添加时间"
-        width="200"
+          prop="createTime"
+          label="添加时间"
+          width="200"
       >
       </el-table-column>
       <el-table-column
-        label="操作"
-        width="100"
+          label="操作"
+          width="100"
       >
         <template #default="scope">
           <a style="cursor: pointer; margin-right: 10px" @click="handleEdit(scope.row.configId)">修改</a>
           <el-popconfirm
-            title="确定删除吗？"
-            confirmButtonText='确定'
-            cancelButtonText='取消'
-            @confirm="handleDeleteOne(scope.row.configId)"
+              title="确定删除吗？"
+              confirmButtonText='确定'
+              cancelButtonText='取消'
+              @confirm="handleDeleteOne(scope.row.configId)"
           >
             <template #reference>
               <a style="cursor: pointer">删除</a>
@@ -77,23 +77,23 @@
     </el-table>
     <!--总数超过一页，再展示分页器-->
     <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="state.total"
-      :page-size="state.pageSize"
-      :current-page="state.currentPage"
-      @current-change="changePage"
+        background
+        layout="prev, pager, next"
+        :total="state.total"
+        :page-size="state.pageSize"
+        :current-page="state.currentPage"
+        @current-change="changePage"
     />
   </el-card>
-  <DialogAddBook ref='addBook' :reload="getIndexConfig" :type="state.type" :configType="state.configType" />
+  <DialogAddBook ref='addBook' :reload="getIndexConfig" :type="state.type" :configType="state.configType"/>
 </template>
 
 <script setup>
-import { onMounted, reactive, ref} from 'vue'
-import { ElMessage } from 'element-plus'
-import { Plus, Delete } from '@element-plus/icons-vue'
+import {onMounted, reactive, ref} from 'vue'
+import {ElMessage} from 'element-plus'
+import {Plus, Delete} from '@element-plus/icons-vue'
 import DialogAddBook from '@/components/DialogAddBook.vue'
-import { useRoute, useRouter } from 'vue-router'
+import {useRoute, useRouter} from 'vue-router'
 import axios from '@/utils/axios'
 // 首页配置类型参数
 const configTypeMap = {
@@ -188,10 +188,11 @@ const changePage = (val) => {
 </script>
 
 <style scoped>
-  .index-container {
-    min-height: 100%;
-  }
-  .el-card.is-always-shadow {
-    min-height: 100%!important;
-  }
+.index-container {
+  min-height: 100%;
+}
+
+.el-card.is-always-shadow {
+  min-height: 100% !important;
+}
 </style>

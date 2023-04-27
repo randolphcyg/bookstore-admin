@@ -33,34 +33,34 @@
       </el-card>
     </div>
     <el-table
-      :data="state.tableData"
-      tooltip-effect="dark"
-      style="width: 100%"
+        :data="state.tableData"
+        tooltip-effect="dark"
+        style="width: 100%"
     >
       <el-table-column
-        label="图书图片"
+          label="图书图片"
       >
         <template #default="scope">
           <img style="width: 100px" :key="scope.row.booksId" :src="$filters.prefix(scope.row.booksCoverImg)" alt="图书主图">
         </template>
       </el-table-column>
       <el-table-column
-        prop="booksId"
-        label="图书编号"
+          prop="booksId"
+          label="图书编号"
       >
       </el-table-column>
       <el-table-column
-        prop="booksName"
-        label="图书名"
+          prop="booksName"
+          label="图书名"
       ></el-table-column>
       <el-table-column
-        prop="booksCount"
-        label="图书数量"
+          prop="booksCount"
+          label="图书数量"
       >
       </el-table-column>
       <el-table-column
-        prop="sellingPrice"
-        label="价格"
+          prop="sellingPrice"
+          label="价格"
       >
       </el-table-column>
     </el-table>
@@ -68,12 +68,12 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue'
-import { useRoute } from 'vue-router'
+import {onMounted, reactive} from 'vue'
+import {useRoute} from 'vue-router'
 import axios from '@/utils/axios'
 
 const route = useRoute()
-const { id } = route.query
+const {id} = route.query
 const state = reactive({
   data: {},
   tableData: []
@@ -88,29 +88,34 @@ onMounted(() => {
 </script>
 
 <style scoped>
-  .data {
-    display: flex;
-    margin-bottom: 50px;
-  }
-  .data .data-item {
-    flex: 1;
-    margin: 0 10px;
-  }
-  .el-table {
-    border: 1px solid #EBEEF5;
-    border-bottom: none;
-  }
-  .has-gutter th {
-    border-right: 1px solid #EBEEF5;
-  }
+.data {
+  display: flex;
+  margin-bottom: 50px;
+}
 
-  .has-gutter th:last-child {
-    border-right: none;
-  }
-  .el-table__row td {
-    border-right: 1px solid #EBEEF5;
-  }
-  .el-table__row td:last-child {
-    border-right: none;
-  }
+.data .data-item {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.el-table {
+  border: 1px solid #EBEEF5;
+  border-bottom: none;
+}
+
+.has-gutter th {
+  border-right: 1px solid #EBEEF5;
+}
+
+.has-gutter th:last-child {
+  border-right: none;
+}
+
+.el-table__row td {
+  border-right: 1px solid #EBEEF5;
+}
+
+.el-table__row td:last-child {
+  border-right: none;
+}
 </style>

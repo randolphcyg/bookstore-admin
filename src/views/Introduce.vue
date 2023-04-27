@@ -7,7 +7,7 @@
     <h1>开发及部署文档</h1>
     <img style="width: 70%;
       display: block;
-      margin: 0 auto;" src="https://s.yezgea02.com/1616938239101/419241616938196_.pic.jpg" />
+      margin: 0 auto;" src="https://s.yezgea02.com/1616938239101/419241616938196_.pic.jpg"/>
     <h1>技术选型</h1>
     <ul style="font-weight: bold;">
       <li>Vue 3.x</li>
@@ -22,9 +22,9 @@
 </template>
 
 <style scoped>
-  .course li {
-    line-height: 36px;
-    color: #409eff;
-    cursor: pointer;
-  }
+.course li {
+  line-height: 36px;
+  color: #409eff;
+  cursor: pointer;
+}
 </style>

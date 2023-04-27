@@ -4,10 +4,10 @@
       <div class="header">
         <el-button type="primary" :icon="Plus" @click="handleAdd">增加</el-button>
         <el-popconfirm
-          title="确定删除吗？"
-          confirmButtonText='确定'
-          cancelButtonText='取消'
-          @confirm="handleDelete"
+            title="确定删除吗？"
+            confirmButtonText='确定'
+            cancelButtonText='取消'
+            @confirm="handleDelete"
         >
           <template #reference>
             <el-button type="danger" :icon="Delete">批量删除</el-button>
@@ -16,60 +16,60 @@
       </div>
     </template>
     <el-table
-      :load="state.loading"
-      ref="multipleTable"
-      :data="state.tableData"
-      tooltip-effect="dark"
-      style="width: 100%"
-      @selection-change="handleSelectionChange"
-     >
+        :load="state.loading"
+        ref="multipleTable"
+        :data="state.tableData"
+        tooltip-effect="dark"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+    >
       <el-table-column
-        type="selection"
-        width="55">
+          type="selection"
+          width="55">
       </el-table-column>
       <el-table-column
-        label="轮播图"
-        width="200">
+          label="轮播图"
+          width="200">
         <template #default="scope">
           <img style="width: 150px;height: 150px" :src="scope.row.carouselUrl" alt="轮播图">
         </template>
       </el-table-column>
       <el-table-column
-        label="跳转链接"
-        >
+          label="跳转链接"
+      >
         <template #default="scope">
           <a target="_blank" :href="scope.row.redirectUrl">{{ scope.row.redirectUrl }}</a>
         </template>
       </el-table-column>
       <el-table-column
-        prop="carouselRank"
-        label="排序值"
-        width="120"
+          prop="carouselRank"
+          label="排序值"
+          width="120"
       >
       </el-table-column>
       <el-table-column
-        prop="createTime"
-        label="添加时间"
-        width="200"
+          prop="createTime"
+          label="添加时间"
+          width="200"
       >
       </el-table-column>
     </el-table>
     <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="state.total"
-      :page-size="state.pageSize"
-      :current-page="state.currentPage"
-      @current-change="changePage"
+        background
+        layout="prev, pager, next"
+        :total="state.total"
+        :page-size="state.pageSize"
+        :current-page="state.currentPage"
+        @current-change="changePage"
     />
   </el-card>
-  <DialogAddSwiper ref='addSwiper' :reload="getCarousels" :type="state.type" />
+  <DialogAddSwiper ref='addSwiper' :reload="getCarousels" :type="state.type"/>
 </template>
 
 <script setup>
-import { onMounted, reactive, ref, toRefs } from 'vue'
-import { ElMessage } from 'element-plus'
-import { Plus, Delete } from '@element-plus/icons-vue'
+import {onMounted, reactive, ref, toRefs} from 'vue'
+import {ElMessage} from 'element-plus'
+import {Plus, Delete} from '@element-plus/icons-vue'
 import axios from '@/utils/axios'
 import DialogAddSwiper from '@/components/DialogAddSwiper.vue'
 
@@ -114,9 +114,9 @@ const handleEdit = (id) => {
   addSwiper.value.open(id)
 }
 // 选中之后的change方法，一旦选项有变化，就会触发该方法。
-  const handleSelectionChange = (val) => {
-    state.multipleSelection = val
-  }
+const handleSelectionChange = (val) => {
+  state.multipleSelection = val
+}
 // 批量删除
 const handleDelete = () => {
   if (!state.multipleSelection.length) {

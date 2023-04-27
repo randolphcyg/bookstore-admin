@@ -6,21 +6,21 @@
       </div>
     </template>
     <el-table
-      :load="state.loading"
-      :data="state.tableData"
-      tooltip-effect="dark"
-      style="width: 100%"
+        :load="state.loading"
+        :data="state.tableData"
+        tooltip-effect="dark"
+        style="width: 100%"
     >
       <el-table-column
-        prop="booksId"
-        label="图书编号"
+          prop="booksId"
+          label="图书编号"
       >
       </el-table-column>
       <el-table-column
-        prop="booksName"
-        label="图书名"
-        width="150px"
-        :show-overflow-tooltip="true"
+          prop="booksName"
+          label="图书名"
+          width="150px"
+          :show-overflow-tooltip="true"
       >
       </el-table-column>
       <el-table-column
@@ -41,32 +41,33 @@
       >
       </el-table-column>
       <el-table-column
-        prop="booksIntro"
-        label="图书简介"
-        width="300px"
-        :show-overflow-tooltip="true"
+          prop="booksIntro"
+          label="图书简介"
+          width="300px"
+          :show-overflow-tooltip="true"
       >
       </el-table-column>
       <el-table-column
-        label="图书图片"
-        width="150px"
+          label="图书图片"
+          width="150px"
       >
         <template #default="scope">
-          <img style="width: 100px; height: 100px;" :key="scope.row.booksId" :src="$filters.prefix(scope.row.booksCoverImg)" alt="图书主图">
+          <img style="width: 100px; height: 100px;" :key="scope.row.booksId"
+               :src="$filters.prefix(scope.row.booksCoverImg)" alt="图书主图">
         </template>
       </el-table-column>
       <el-table-column
-        prop="stockNum"
-        label="图书库存"
+          prop="stockNum"
+          label="图书库存"
       >
       </el-table-column>
       <el-table-column
-        prop="sellingPrice"
-        label="图书售价"
+          prop="sellingPrice"
+          label="图书售价"
       >
       </el-table-column>
       <el-table-column
-        label="上架状态"
+          label="上架状态"
       >
         <template #default="scope">
           <span style="color: green;" v-if="scope.row.booksSellStatus === 0">销售中</span>
@@ -75,37 +76,38 @@
       </el-table-column>
 
       <el-table-column
-        label="操作"
-        width="100"
+          label="操作"
+          width="100"
       >
         <template #default="scope">
           <a style="cursor: pointer; margin-right: 10px" @click="handleEdit(scope.row.booksId)">修改</a>
-          <a style="cursor: pointer; margin-right: 10px" v-if="scope.row.booksSellStatus === 0" @click="handleStatus(scope.row.booksId, 1)">下架</a>
+          <a style="cursor: pointer; margin-right: 10px" v-if="scope.row.booksSellStatus === 0"
+             @click="handleStatus(scope.row.booksId, 1)">下架</a>
           <a style="cursor: pointer; margin-right: 10px" v-else @click="handleStatus(scope.row.booksId, 0)">上架</a>
         </template>
       </el-table-column>
     </el-table>
     <!--总数超过一页，再展示分页器-->
     <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="state.total"
-      :page-size="state.pageSize"
-      :current-page="state.currentPage"
-      @current-change="changePage"
+        background
+        layout="prev, pager, next"
+        :total="state.total"
+        :page-size="state.pageSize"
+        :current-page="state.currentPage"
+        @current-change="changePage"
     />
   </el-card>
 </template>
 
 <script setup>
-import { onMounted, reactive, getCurrentInstance } from 'vue'
+import {onMounted, reactive, getCurrentInstance} from 'vue'
 import axios from '@/utils/axios'
-import { ElMessage } from 'element-plus'
-import { Plus, Delete } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
+import {ElMessage} from 'element-plus'
+import {Plus, Delete} from '@element-plus/icons-vue'
+import {useRouter} from 'vue-router'
 
 const app = getCurrentInstance()
-const { goTop } = app.appContext.config.globalProperties
+const {goTop} = app.appContext.config.globalProperties
 const router = useRouter()
 const state = reactive({
   loading: false,
@@ -134,10 +136,10 @@ const getBookList = () => {
   })
 }
 const handleAdd = () => {
-  router.push({ path: '/add' })
+  router.push({path: '/add'})
 }
 const handleEdit = (id) => {
-  router.push({ path: '/add', query: { id } })
+  router.push({path: '/add', query: {id}})
 }
 const changePage = (val) => {
   state.currentPage = val
@@ -154,10 +156,11 @@ const handleStatus = (id, status) => {
 </script>
 
 <style scoped>
-  .book-container {
-    min-height: 100%;
-  }
-  .el-card.is-always-shadow {
-    min-height: 100%!important;
-  }
+.book-container {
+  min-height: 100%;
+}
+
+.el-card.is-always-shadow {
+  min-height: 100% !important;
+}
 </style>
