@@ -25,6 +25,7 @@ export default ({ mode }) => defineConfig({
   },
   base: './',
   server: {
+    port:5173,
     proxy: {
       '/api': {
         target: 'http://localhost:8888/manage-api/v1', // 凡是遇到 /api 路径的请求，都映射到 target 属性
