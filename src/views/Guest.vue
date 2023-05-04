@@ -3,7 +3,9 @@
     <template #header>
       <div class="header">
         <el-button type="primary" :icon="Plus" @click="handleSolve">解除禁用</el-button>
-        <el-button type="danger" :icon="Delete" @click="handleForbid">禁用账户</el-button>
+        <el-button type="info" :icon="Warning" @click="handleForbid">禁用账户</el-button>
+        <el-button type="danger" :icon="Delete" @click="handleDel">删除账户</el-button>
+        <el-button type="success" :icon="Plus" @click="handleReActive">恢复账户</el-button>
       </div>
     </template>
     <Table
@@ -57,7 +59,7 @@
 import {ref} from 'vue'
 import Table from '@/components/Table.vue'
 import {ElMessage} from 'element-plus'
-import {Plus, Delete} from '@element-plus/icons-vue'
+import {Plus, Delete, Warning} from '@element-plus/icons-vue'
 import axios from '@/utils/axios'
 
 let table = ref(null)
@@ -85,6 +87,33 @@ const handleForbid = () => {
     table.value.getList()
   })
 }
+
+const handleDel = () => {
+  if (!table.value.state.multipleSelection.length) {
+    ElMessage.error('请选择项')
+    return
+  }
+  axios.put(`/users/del/1`, {
+    ids: table.value.state.multipleSelection.map(item => item.userId)
+  }).then(() => {
+    ElMessage.success('删除成功')
+    table.value.getList()
+  })
+}
+
+const handleReActive = () => {
+  if (!table.value.state.multipleSelection.length) {
+    ElMessage.error('请选择项')
+    return
+  }
+  axios.put(`/users/del/0`, {
+    ids: table.value.state.multipleSelection.map(item => item.userId)
+  }).then(() => {
+    ElMessage.success('恢复成功')
+    table.value.getList()
+  })
+}
+
 </script>
 
 <style>

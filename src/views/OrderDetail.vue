@@ -31,6 +31,40 @@
           {{ state.data.orderNo }}
         </div>
       </el-card>
+
+      <el-card class="data-item" shadow="hover">
+        <template #header>
+          <div class="card-header">
+            <span>收货人</span>
+          </div>
+        </template>
+        <div>
+          {{ state.username }}
+        </div>
+      </el-card>
+
+      <el-card class="data-item" shadow="hover">
+        <template #header>
+          <div class="card-header">
+            <span>收货电话</span>
+          </div>
+        </template>
+        <div>
+          {{ state.tel }}
+        </div>
+      </el-card>
+
+      <el-card class="data-item" shadow="hover">
+        <template #header>
+          <div class="card-header">
+            <span>收货地址</span>
+          </div>
+        </template>
+        <div>
+          {{ state.address }}
+        </div>
+      </el-card>
+
     </div>
     <el-table
         :data="state.tableData"
@@ -76,13 +110,18 @@ const route = useRoute()
 const {id} = route.query
 const state = reactive({
   data: {},
-  tableData: []
+  tableData: [],
+  username: '',
+  tel: '',
+  address: ''
 })
 onMounted(() => {
   axios.get(`/orders/${id}`).then(res => {
-    console.log(res)
     state.data = res
     state.tableData = res.bookStoreOrderItemVOS
+    state.username = state.data.bookStoreOrderAddressVOS.userName
+    state.tel = state.data.bookStoreOrderAddressVOS.userPhone
+    state.address = state.data.bookStoreOrderAddressVOS.provinceName+'/'+state.data.bookStoreOrderAddressVOS.regionName +'/' +state.data.bookStoreOrderAddressVOS.detailAddress
   })
 })
 </script>
